@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services | REV.LAB</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Syne:wght@800&display=swap" rel="stylesheet">
+    <style>
+        :root { --neon: #ccff00; --dark: #0a0a0a; }
+        body { background: var(--dark); color: white; font-family: 'Inter', sans-serif; }
+        .heading-font { font-family: 'Syne', sans-serif; }
+        
+        .glass-card { 
+            background: rgba(255, 255, 255, 0.02); 
+            border: 1px solid rgba(255, 255, 255, 0.05); 
+            transition: all 0.3s ease;
+        }
+        
+        .glass-card:hover {
+            border-color: var(--neon);
+            background: rgba(204, 255, 0, 0.02);
+            transform: translateY(-5px);
+        }
+
+        /* Tab Switcher Styling */
+        .tab-btn.active {
+            background-color: var(--neon);
+            color: black;
+        }
+
+        .price-tag {
+            font-feature-settings: "tnum";
+            letter-spacing: -0.05em;
+        }
+    </style>
+</head>
+<body class="pb-20">
+
+    <section class="pt-32 pb-12 px-6 text-center">
+        <h1 class="heading-font text-5xl md:text-7xl uppercase italic mb-4">The <span class="text-[#ccff00]">Lab</span> Menu</h1>
+        <p class="text-gray-500 max-w-xl mx-auto uppercase tracking-widest text-[10px] font-bold">
+            Select your machine category to see engineering specs and pricing.
+        </p>
+
+        <div class="mt-12 inline-flex p-1 bg-white/5 rounded-2xl border border-white/10">
+            <button onclick="switchTab('car')" id="car-tab" class="tab-btn active px-8 py-3 rounded-xl text-xs font-black uppercase tracking-widest transition-all duration-300">
+                Car Services
+            </button>
+            <button onclick="switchTab('bike')" id="bike-tab" class="tab-btn px-8 py-3 rounded-xl text-xs font-black uppercase tracking-widest transition-all duration-300">
+                Bike Services
+            </button>
+        </div>
+    </section>
+
+    <div class="container mx-auto px-6">
+        <div id="services-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            </div>
+    </div>
+
+    <script>
+        const services = {
+            car: [
+                { title: "Engine Repair", desc: "Full breakdown, diagnostic, and precision rebuilds.", price: "₹299", icon: "engine" },
+                { title: "AC Repair", desc: "Regassing and thermal efficiency optimization.", price: "₹499", icon: "wind" },
+                { title: "Brake System", desc: "Ceramic pad replacement and hydraulic bleeding.", price: "₹199", icon: "disc" },
+                { title: "Suspension", desc: "Shock absorption tuning and coilover installs.", price: "₹149", icon: "layers" },
+                { title: "Electricals", desc: "Complex wiring, ECU remapping, and sensor fixes.", price: "₹999", icon: "zap" },
+                { title: "Wheel Alignment", desc: "Laser-guided precision for perfect handling.", price: "₹749", icon: "maximize" }
+            ],
+            bike: [
+                { title: "General Service", desc: "Oil, filters, and 45-point health check.", price: "₹649", icon: "check-circle" },
+                { title: "Engine Overhaul", desc: "Performance tuning and piston clearance check.", price: "₹449", icon: "settings" },
+                { title: "Chain & Sprocket", desc: "Deep clean, lubrication, and tension set.", price: "₹399", icon: "link" },
+                { title: "Brake Service", desc: "Bleeding lines and high-friction pad install.", price: "₹549", icon: "circle-slash" },
+                { title: "Electrical Work", desc: "Stator testing, battery health, and lighting.", price: "₹799", icon: "battery-charging" }
+            ]
+        };
+
+        function renderServices(type) {
+            const grid = document.getElementById('services-grid');
+            grid.innerHTML = '';
+
+            services[type].forEach((service, index) => {
+                const card = document.createElement('div');
+                card.className = "glass-card p-8 rounded-[32px] flex flex-col justify-between opacity-0 translate-y-4 service-card";
+                card.innerHTML = `
+                    <div>
+                        <div class="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center text-[#ccff00] mb-6">
+                            <i data-lucide="${getIcon(service.title)}" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="heading-font text-2xl uppercase italic mb-3">${service.title}</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-8">${service.desc}</p>
+                    </div>
+                    <div class="flex justify-between items-center pt-6 border-t border-white/5">
+                        <div class="flex flex-col">
+                            <span class="text-[9px] uppercase tracking-widest text-gray-500 font-bold">Starting at</span>
+                            <span class="text-2xl font-black price-tag text-[#ccff00]">${service.price}</span>
+                        </div>
+                        <button class="bg-white text-black text-[10px] font-black uppercase px-5 py-3 rounded-xl hover:bg-[#ccff00] transition-colors">
+                            Book Now
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+
+            lucide.createIcons();
+            
+            // Animation for entry
+            gsap.to(".service-card", {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                stagger: 0.1,
+                ease: "power2.out"
+            });
+        }
+
+        function getIcon(title) {
+            // Helper to map services to Lucide icons
+            const map = {
+                "Engine Repair": "cog", "AC Repair": "wind", "Brake System": "disc",
+                "Suspension": "layers", "Electricals": "zap", "Wheel Alignment": "maximize",
+                "General Service": "check-square", "Engine Overhaul": "wrench",
+                "Chain & Sprocket": "link", "Brake Service": "shield-alert", "Electrical Work": "cpu"
+            };
+            return map[title] || "tool";
+        }
+
+        function switchTab(type) {
+            // Update UI
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`${type}-tab`).classList.add('active');
+            
+            // Re-render with animation
+            gsap.to("#services-grid", { opacity: 0, duration: 0.2, onComplete: () => {
+                renderServices(type);
+                gsap.to("#services-grid", { opacity: 1, duration: 0.2 });
+            }});
+        }
+
+        // Initial Load
+        window.onload = () => renderServices('car');
+    </script>
+</body>
+</html>

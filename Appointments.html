@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Direct Booking | REV.LAB</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Syne:wght@800&display=swap" rel="stylesheet">
+    <style>
+        :root { --neon: #ccff00; --dark: #0a0a0a; }
+        body { background: var(--dark); color: white; font-family: 'Inter', sans-serif; }
+        .heading-font { font-family: 'Syne', sans-serif; }
+        .glass-panel { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .input-field { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.3s ease; color: white; }
+        .input-field:focus { border-color: var(--neon); outline: none; background: rgba(255, 255, 255, 0.08); }
+        .step-pill { transition: all 0.5s ease; }
+        .step-pill.active { background: var(--neon); width: 40px; }
+        .type-card input:checked + div { border-color: var(--neon); background: rgba(204, 255, 0, 0.1); }
+        input::-webkit-calendar-picker-indicator { filter: invert(1); }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-6">
+
+    <div class="w-full max-w-xl">
+        <div class="flex justify-between items-end mb-8">
+            <div>
+                <h1 class="heading-font text-4xl italic uppercase">Quick <span class="text-neon">Book</span></h1>
+                <p class="text-gray-500 text-xs uppercase tracking-widest font-bold mt-1" id="step-label">Step 1 of 2: Essentials</p>
+            </div>
+            <div class="flex gap-2 mb-2">
+                <div id="pill-1" class="step-pill active h-1.5 w-6 rounded-full bg-white/20"></div>
+                <div id="pill-2" class="step-pill h-1.5 w-6 rounded-full bg-white/20"></div>
+            </div>
+        </div>
+
+        <form id="booking-form" class="glass-panel p-8 rounded-[32px]">
+            <div id="step-1-content" class="space-y-6">
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="space-y-2">
+                        <label class="text-[10px] uppercase tracking-widest text-gray-400 font-bold">Full Name</label>
+                        <input type="text" id="cust-name" placeholder="Name" class="input-field w-full p-4 rounded-2xl text-sm" required>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-[10px] uppercase tracking-widest text-gray-400 font-bold">Phone</label>
+                        <input type="tel" id="cust-phone" placeholder="Contact No." class="input-field w-full p-4 rounded-2xl text-sm" required>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <label class="text-[10px] uppercase tracking-widest text-gray-400 font-bold">Machine Type</label>
+                    <div class="grid grid-cols-2 gap-4">
+                        <label class="type-card cursor-pointer">
+                            <input type="radio" name="v-type" value="Car" class="hidden" checked onclick="toggleServices('car')">
+                            <div class="border border-white/10 p-6 rounded-2xl text-center transition-all hover:bg-white/5">
+                                <i data-lucide="car" class="mx-auto mb-2"></i>
+                                <span class="text-xs font-bold uppercase tracking-widest">Car</span>
+                            </div>
+                        </label>
+                        <label class="type-card cursor-pointer">
+                            <input type="radio" name="v-type" value="Bike" class="hidden" onclick="toggleServices('bike')">
+                            <div class="border border-white/10 p-6 rounded-2xl text-center transition-all hover:bg-white/5">
+                                <i data-lucide="bike" class="mx-auto mb-2"></i>
+                                <span class="text-xs font-bold uppercase tracking-widest">Bike</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="space-y-2">
+                    <label class="text-[10px] uppercase tracking-widest text-gray-400 font-bold">Model Name</label>
+                    <input type="text" id="v-model" placeholder="e.g. BMW M3 / Yamaha R1" class="input-field w-full p-4 rounded-2xl text-sm" required>
+                </div>
+
+                <button type="button" onclick="goToStep(2)" class="w-full bg-white text-black font-black uppercase text-xs tracking-[0.2em] py-5 rounded-2xl hover:bg-neon transition active:scale-95">
+                    Next Section
+                </button>
+            </div>
+
+            <div id="step-2-content" class="hidden space-y-6">
+                <div class="space-y-2">
+                    <label class="text-[10px] uppercase tracking-widest text-gray-400 font-bold">Service Required</label>
+                    <select id="service-select" class="input-field w-full p-4 rounded-2xl text-sm appearance-none cursor-pointer">
+                    </select>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="space-y-2">
+                        <label class="text-[10px] uppercase tracking-widest text-gray-400 font-bold">Date</label>
+                        <input type="date" id="pref-date" class="input-field w-full p-4 rounded-2xl text-sm" required>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-[10px] uppercase tracking-widest text-gray-400 font-bold">Time</label>
+                        <input type="time" id="pref-time" class="input-field w-full p-4 rounded-2xl text-sm" required>
+                    </div>
+                </div>
+
+                <div class="flex gap-4 pt-4">
+                    <button type="button" onclick="goToStep(1)" class="flex-1 border border-white/10 text-white font-bold uppercase text-[10px] tracking-widest py-5 rounded-2xl hover:bg-white/5 transition">
+                        Back
+                    </button>
+                    <button type="submit" id="submit-btn" class="flex-[2] bg-[#25D366] text-white font-black uppercase text-xs tracking-[0.2em] py-5 rounded-2xl flex items-center justify-center gap-3 hover:shadow-[0_0_30px_rgba(37,211,102,0.4)] transition active:scale-95">
+                        <i data-lucide="message-circle"></i> Confirm via WhatsApp
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        const carServices = ["Engine Diagnostics", "Oil Change", "AC Repair", "Brake Work", "Full Detailing"];
+        const bikeServices = ["General Service", "Chain & Sprocket", "Engine Tuning", "Brake Bleeding"];
+
+        function toggleServices(type) {
+            const select = document.getElementById('service-select');
+            const list = type === 'car' ? carServices : bikeServices;
+            select.innerHTML = list.map(s => `<option value="${s}">${s}</option>`).join('');
+        }
+
+        function goToStep(step) {
+            const step1 = document.getElementById('step-1-content');
+            const step2 = document.getElementById('step-2-content');
+            const label = document.getElementById('step-label');
+            const p1 = document.getElementById('pill-1');
+            const p2 = document.getElementById('pill-2');
+
+            if (step === 2) {
+                gsap.to(step1, { opacity: 0, x: -20, duration: 0.3, onComplete: () => {
+                    step1.classList.add('hidden');
+                    step2.classList.remove('hidden');
+                    gsap.fromTo(step2, { opacity: 0, x: 20 }, { opacity: 1, x: 0, duration: 0.4 });
+                    label.innerText = "Step 2 of 2: Service & Time";
+                    p1.classList.remove('active'); p2.classList.add('active');
+                }});
+            } else {
+                gsap.to(step2, { opacity: 0, x: 20, duration: 0.3, onComplete: () => {
+                    step2.classList.add('hidden');
+                    step1.classList.remove('hidden');
+                    gsap.fromTo(step1, { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.4 });
+                    label.innerText = "Step 1 of 2: Essentials";
+                    p2.classList.remove('active'); p1.classList.add('active');
+                }});
+            }
+        }
+
+        document.getElementById('booking-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const submitBtn = document.getElementById('submit-btn');
+            submitBtn.innerHTML = "Opening WhatsApp...";
+            submitBtn.disabled = true;
+
+            // --- THE CRITICAL FIX ---
+            // Remove ALL non-digit characters (no +, no spaces, no dashes)
+            // Replace '911234567890' with your actual number + country code
+            const rawNumber = "919392608733"; 
+            const myWhatsAppNumber = rawNumber.replace(/\D/g, ''); 
+
+            const name = document.getElementById('cust-name').value;
+            const phone = document.getElementById('cust-phone').value;
+            const vehicle = document.querySelector('input[name="v-type"]:checked').value;
+            const model = document.getElementById('v-model').value;
+            const service = document.getElementById('service-select').value;
+            const date = document.getElementById('pref-date').value;
+            const time = document.getElementById('pref-time').value;
+
+            const message = `🛠️ *NEW BOOKING: REV.LAB*\n` +
+                            `--------------------------\n` +
+                            `👤 *Customer:* ${name}\n` +
+                            `📞 *Phone:* ${phone}\n` +
+                            `🏎️ *Vehicle:* ${vehicle} (${model})\n` +
+                            `🔧 *Service:* ${service}\n` +
+                            `📅 *Schedule:* ${date} at ${time}\n` +
+                            `--------------------------\n` +
+                            `_Generated via Rev.Lab Portal_`;
+
+            const finalURL = `https://wa.me/${myWhatsAppNumber}?text=${encodeURIComponent(message)}`;
+            
+            setTimeout(() => {
+                window.location.href = finalURL;
+            }, 800);
+        });
+
+        // Initialize first load
+        toggleServices('car');
+    </script>
+</body>
+</html>

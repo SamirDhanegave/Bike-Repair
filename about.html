@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | REV.LAB</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Syne:wght@800&display=swap" rel="stylesheet">
+    <style>
+        :root { --neon: #ccff00; --dark: #0a0a0a; }
+        body { background: var(--dark); color: white; font-family: 'Inter', sans-serif; }
+        .heading-font { font-family: 'Syne', sans-serif; }
+        
+        .stat-card {
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            padding-left: 1.5rem;
+        }
+
+        .team-photo {
+            filter: grayscale(100%);
+            transition: all 0.5s ease;
+        }
+
+        .team-card:hover .team-photo {
+            filter: grayscale(0%);
+            transform: scale(1.05);
+        }
+
+        .glass-tag {
+            background: rgba(204, 255, 0, 0.1);
+            border: 1px solid var(--neon);
+            color: var(--neon);
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <section class="pt-32 pb-20 px-6 container mx-auto">
+        <div class="max-w-4xl">
+            <h2 class="text-xs uppercase tracking-[0.4em] text-gray-500 font-bold mb-6">Our Origins</h2>
+            <h1 class="heading-font text-5xl md:text-8xl uppercase italic leading-none mb-8">
+                Built in a <span class="text-neon">Garage.</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-400 font-light leading-relaxed">
+                We started with one garage and one goal: <span class="text-white font-medium">To fix vehicles honestly.</span> No upsells, no hidden fees. Just pure engineering and a passion for things that go fast.
+            </p>
+        </div>
+    </section>
+
+    <section class="py-20 border-y border-white/5 bg-white/[0.01]">
+        <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div class="stat-card reveal">
+                <i data-lucide="zap" class="text-neon mb-4 w-8 h-8"></i>
+                <h3 class="heading-font text-2xl uppercase mb-2">Speed</h3>
+                <p class="text-gray-500 text-sm">Downtime is dead time. We’ve optimized our workflow to get you back on the asphalt faster than the dealership ever could.</p>
+            </div>
+            <div class="stat-card reveal">
+                <i data-lucide="eye" class="text-neon mb-4 w-8 h-8"></i>
+                <h3 class="heading-font text-2xl uppercase mb-2">Transparency</h3>
+                <p class="text-gray-500 text-sm">Live photo updates of your repair. We show you exactly what’s broken and why it needs fixing. Zero guesswork.</p>
+            </div>
+            <div class="stat-card reveal">
+                <i data-lucide="shield-check" class="text-neon mb-4 w-8 h-8"></i>
+                <h3 class="heading-font text-2xl uppercase mb-2">Quality</h3>
+                <p class="text-gray-500 text-sm">Every bolt is torqued to spec. We use OEM or high-performance parts only. If we wouldn’t drive it, we won’t ship it.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="bg-[#0a0a0a] border-t border-white/10 pt-20 pb-10 px-6">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
+                
+                <div class="space-y-6">
+                    <div class="flex items-center gap-2">
+                        <div class="w-8 h-8 bg-neon rounded-lg flex items-center justify-center">
+                            <i data-lucide="cog" class="w-5 h-5 text-black"></i>
+                        </div>
+                        <span class="heading-font text-2xl uppercase italic tracking-tighter">REV<span class="text-neon">.</span>LAB</span>
+                    </div>
+                    <p class="text-gray-500 text-sm leading-relaxed max-w-xs">
+                        High-performance maintenance for the next generation of drivers. Engineering excellence, zero fluff.
+                    </p>
+                    <div class="flex gap-4">
+                        </a>
+                     <a href="https://wa.me/+919552755818" 
+   target="_blank" 
+   class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center hover:bg-[#25D366] hover:text-white transition-all group"
+   title="Chat on WhatsApp">
+    <i data-lucide="message-circle" class="w-5 h-5 group-hover:scale-110 transition-transform"></i>
+</a>
+                        </a>
+                    </div>
+                </div>
+
+                
+
+               
+             
+
+            <div class="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+                <p class="text-[10px] text-gray-600 uppercase tracking-widest font-medium">
+                    © 2026 REV.LAB — Designed for the Fast.
+                </p>
+                <div class="flex gap-8">
+                    <a href="privacy.html" class="text-[10px] text-gray-600 hover:text-white uppercase tracking-widest">Privacy Policy</a>
+                    <a href="terms.html" class="text-[10px] text-gray-600 hover:text-white uppercase tracking-widest">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+   
+    <script>
+        lucide.createIcons();
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Simple reveal animation for mission cards
+        gsap.from(".reveal", {
+            scrollTrigger: {
+                trigger: ".reveal",
+                start: "top 80%",
+            },
+            opacity: 0,
+            y: 30,
+            duration: 0.8,
+            stagger: 0.2,
+            ease: "power2.out"
+        });
+
+        // Team card reveal
+        // gsap.from(".team-card", {
+        //     scrollTrigger: {
+        //         trigger: ".team-card",
+        //         start: "top 85%",
+        //     },
+        //     opacity: 0,
+        //     y: 40,
+        //     duration: 1,
+        //     stagger: 0.15,
+        //     ease: "power3.out"
+        // });
+    </script>
+</body>
+</html>

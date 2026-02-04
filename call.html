@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | REV.LAB</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Syne:wght@800&display=swap" rel="stylesheet">
+    <style>
+        :root { --neon: #ccff00; --dark: #0a0a0a; }
+        body { background: var(--dark); color: white; font-family: 'Inter', sans-serif; }
+        .heading-font { font-family: 'Syne', sans-serif; }
+        
+        .contact-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .contact-card:hover {
+            border-color: var(--neon);
+            background: rgba(204, 255, 0, 0.03);
+            transform: translateY(-8px);
+        }
+
+        .pulse-icon {
+            animation: shadow-pulse 2s infinite;
+        }
+
+        @keyframes shadow-pulse {
+            0% { box-shadow: 0 0 0 0px rgba(204, 255, 0, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(204, 255, 0, 0); }
+            100% { box-shadow: 0 0 0 0px rgba(204, 255, 0, 0); }
+        }
+    </style>
+</head>
+<body class="pt-24 pb-12">
+
+    <section class="container mx-auto px-6">
+        <div class="mb-16 text-center">
+            <h2 class="text-xs uppercase tracking-[0.5em] text-gray-500 font-bold mb-4">Get in Touch</h2>
+            <h1 class="heading-font text-5xl md:text-8xl uppercase italic">The <span class="text-neon">Hotline.</span></h1>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            
+            <a href="tel:+911234567890" class="contact-card p-10 rounded-[40px] flex flex-col items-center text-center group">
+                <div class="w-20 h-20 bg-neon rounded-3xl flex items-center justify-center text-black mb-8 pulse-icon">
+                    <i data-lucide="phone-forwarded" class="w-8 h-8 group-hover:rotate-12 transition-transform"></i>
+                </div>
+                <h3 class="heading-font text-2xl uppercase mb-2">Instant Call</h3>
+                <p class="text-gray-500 text-sm mb-6">Immediate response for breakdowns and inquiries.</p>
+                <span class="text-neon font-black tracking-tighter text-xl">+91 93926 08733</span>
+            </a>
+
+            <a href="https://wa.me/919392608733" target="_blank" class="contact-card p-10 rounded-[40px] flex flex-col items-center text-center group">
+                <div class="w-20 h-20 bg-[#25D366] rounded-3xl flex items-center justify-center text-white mb-8">
+                    <i data-lucide="message-square" class="w-8 h-8 group-hover:scale-110 transition-transform"></i>
+                </div>
+                <h3 class="heading-font text-2xl uppercase mb-2">WhatsApp</h3>
+                <p class="text-gray-500 text-sm mb-6">Send us photos of the issue for a quick quote.</p>
+                <span class="text-[#25D366] font-black tracking-tighter text-xl">Chat Now</span>
+            </a>
+
+           
+
+        </div>
+
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

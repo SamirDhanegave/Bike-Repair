@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service | REV.LAB</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Syne:wght@800&display=swap" rel="stylesheet">
+    <style>
+        :root { --neon: #ccff00; --dark: #0a0a0a; }
+        body { background: var(--dark); color: white; font-family: 'Inter', sans-serif; }
+        .heading-font { font-family: 'Syne', sans-serif; }
+        .glass-card { 
+            background: rgba(255, 255, 255, 0.02); 
+            border: 1px solid rgba(255, 255, 255, 0.08); 
+        }
+        .term-block {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 2rem;
+            margin-bottom: 2rem;
+        }
+        .term-block h2 { 
+            font-family: 'Syne', sans-serif; 
+            text-transform: uppercase; 
+            color: white;
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .term-number {
+            color: var(--neon);
+            font-size: 0.8rem;
+            border: 1px solid var(--neon);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="pt-32 pb-20 px-6">
+
+    <div class="max-w-3xl mx-auto">
+        <div class="mb-16">
+            <h1 class="heading-font text-5xl md:text-7xl uppercase italic mb-4">The <span class="text-neon">Rules</span></h1>
+            <p class="text-gray-500 uppercase tracking-widest text-xs font-bold">Terms of Service // REV.LAB Garage</p>
+        </div>
+
+        <div class="space-y-4">
+            
+            <div class="term-block">
+                <h2><span class="term-number">01</span> Booking & No-Shows</h2>
+                <p class="text-gray-400 text-sm leading-relaxed">
+                    Time is the only thing we can't fix. If you book a slot and can't make it, let us know via WhatsApp at least 4 hours in advance. Frequent "ghosting" will result in a required deposit for future bookings.
+                </p>
+            </div>
+
+            <div class="term-block">
+                <h2><span class="term-number">02</span> Vehicle Safety</h2>
+                <p class="text-gray-400 text-sm leading-relaxed">
+                    We reserve the right to refuse service if a vehicle is deemed "death-trap" levels of unsafe for our techs to drive. If we find critical safety issues during a routine check, we will notify you immediately before proceeding.
+                </p>
+            </div>
+
+            <div class="term-block">
+                <h2><span class="term-number">03</span> Parts & Performance</h2>
+                <p class="text-gray-400 text-sm leading-relaxed">
+                    We use OEM or verified high-performance parts. If you bring your own parts for us to install, we cannot provide a warranty on the part itself—only on our labor. Tuning and ECU remapping are performed at the owner's risk regarding factory warranties.
+                </p>
+            </div>
+
+            <div class="term-block">
+                <h2><span class="term-number">04</span> Payment & Pickup</h2>
+                <p class="text-gray-400 text-sm leading-relaxed">
+                    Payment is due upon completion of the work. Vehicles not picked up within 48 hours of service completion may be subject to a storage fee, unless otherwise agreed upon via WhatsApp.
+                </p>
+            </div>
+
+            <div class="term-block">
+                <h2><span class="term-number">05</span> Content Release</h2>
+                <p class="text-gray-400 text-sm leading-relaxed">
+                    We love cool machines. Unless you tell us not to, we might snap a clean photo of your vehicle for our Instagram gallery. We will always blur out license plates to protect your privacy.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="mt-12 p-8 rounded-3xl bg-neon/5 border border-neon/20">
+            <p class="text-xs text-gray-300 leading-relaxed italic">
+                By booking a service through this portal, you agree to the rules above. We're here to do great work; these rules just help us keep the garage running smoothly for everyone.
+            </p>
+        </div>
+
+        <div class="mt-20">
+            <a href="/" class="group flex items-center gap-2 text-white uppercase font-black text-xs tracking-widest transition-all">
+                <i data-lucide="chevron-left" class="w-4 h-4 text-neon group-hover:-translate-x-1 transition-transform"></i> Return to Site
+            </a>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

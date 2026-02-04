@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REV.LAB | Elite Auto & Moto Repair</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root { --neon: #ccff00; --dark: #080808; --card: #121212; }
+        body { background-color: var(--dark); color: #fff; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        .heading-font { font-family: 'Syne', sans-serif; }
+        
+        /* Glass Effect */
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        
+        /* Glow Accents */
+        .neon-border:hover { border-color: var(--neon); box-shadow: 0 0 15px rgba(204, 255, 0, 0.2); }
+        .text-neon { color: var(--neon); }
+        .bg-neon { background-color: var(--neon); }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--dark); }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--neon); }
+
+        .bento-item { transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1); }
+        
+        /* Grain Overlay for Texture */
+        .grain::before {
+            content: ""; top: 0; left: 0; width: 100%; height: 100%; position: fixed;
+            background: url(https://grainy-gradients.vercel.app/noise.svg);
+            opacity: 0.04; pointer-events: none; z-index: 9999;
+        }
+    </style>
+</head>
+<body class="grain">
+
+    <nav class="fixed w-full z-[100] px-6 py-4 flex justify-between items-center glass">
+        <div class="heading-font text-xl font-extrabold tracking-tighter italic">REV<span class="text-neon">.</span>LAB</div>
+        <div class="hidden md:flex space-x-8 text-[10px] uppercase font-bold tracking-widest text-gray-400">
+            <a href="service.html" class="hover:text-neon transition">Services</a>
+            <a href="about.html" class="hover:text-neon transition">Why Us</a>
+            <a href="#reviews" class="hover:text-neon transition">Reviews</a>
+        </div>
+        <!-- <button class="bg-neon text-black px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-tighter hover:scale-105 transition">Book Appointment</button> -->
+    </nav>
+
+    <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <div class="absolute inset-0 z-0 opacity-30">
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-neon/10 rounded-full blur-[120px]"></div>
+        </div>
+        
+        <div class="container mx-auto px-6 grid lg:grid-cols-2 gap-12 relative z-10">
+            <div class="flex flex-col justify-center">
+                <div class="reveal inline-flex items-center space-x-2 bg-white/5 border border-white/10 px-3 py-1 rounded-full w-fit mb-6">
+                    <span class="w-2 h-2 bg-neon rounded-full animate-pulse"></span>
+                    <span class="text-[10px] font-bold uppercase tracking-widest">Available for emergency repairs</span>
+                </div>
+                <h1 class="reveal heading-font text-7xl md:text-9xl italic uppercase leading-[0.85] mb-6">
+                    We Fix.<br><span class="text-neon">You Ride.</span>
+                </h1>
+                <p class="reveal text-gray-400 text-lg md:text-xl max-w-md mb-8">
+                    Car & Bike Repair Services You Can Trust. Professional diagnostics with <span class="text-white font-bold">zero drama.</span>
+                </p>
+                <div class="reveal flex flex-wrap gap-4">
+                    <button class="bg-neon text-black px-8 py-4 rounded-xl font-bold uppercase text-xs tracking-widest hover:shadow-[0_0_30px_rgba(204,255,0,0.3)] transition"><a href="Appointments.html">Book Appointment</a></button>
+                    <button class="border border-white/20 glass px-8 py-4 rounded-xl font-bold uppercase text-xs tracking-widest hover:bg-white/5 transition flex items-center gap-2">
+                        <i data-lucide="phone" class="w-4 h-4"></i> <a href="call.html">Call Now</a>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="hidden lg:flex items-center justify-center reveal">
+                <svg viewBox="0 0 500 300" class="w-full opacity-40">
+                    <path d="M50,200 L450,200 M100,200 L120,140 L380,140 L400,200" fill="none" stroke="#ccff00" stroke-width="2" stroke-dasharray="1000" id="car-path" />
+                    <circle cx="130" cy="220" r="35" fill="none" stroke="#ccff00" stroke-width="2" />
+                    <circle cx="370" cy="220" r="35" fill="none" stroke="#ccff00" stroke-width="2" />
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 border-y border-white/5 bg-white/[0.01]">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="highlight-card flex flex-col items-center text-center space-y-3">
+                    <div class="p-4 rounded-2xl bg-white/5 text-neon"><i data-lucide="zap"></i></div>
+                    <h3 class="font-bold text-sm uppercase tracking-widest">Same-Day Service</h3>
+                </div>
+                <div class="highlight-card flex flex-col items-center text-center space-y-3">
+                    <div class="p-4 rounded-2xl bg-white/5 text-neon"><i data-lucide="wrench"></i></div>
+                    <h3 class="font-bold text-sm uppercase tracking-widest">Certified Pros</h3>
+                </div>
+                <div class="highlight-card flex flex-col items-center text-center space-y-3">
+                    <div class="p-4 rounded-2xl bg-white/5 text-neon"><i data-lucide="banknote"></i></div>
+                    <h3 class="font-bold text-sm uppercase tracking-widest">Transparent Price</h3>
+                </div>
+                <div class="highlight-card flex flex-col items-center text-center space-y-3">
+                    <div class="p-4 rounded-2xl bg-white/5 text-neon"><i data-lucide="map-pin"></i></div>
+                    <h3 class="font-bold text-sm uppercase tracking-widest">On-Site Pickup</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-24">
+        <div class="container mx-auto px-6">
+            <div class="mb-16">
+                <h2 class="heading-font text-5xl uppercase italic tracking-tighter">Popular <span class="text-neon">Services</span></h2>
+                <p class="text-gray-500 mt-2">Expert solutions for every machine.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="md:col-span-2 glass p-8 rounded-3xl bento-item neon-border relative overflow-hidden group">
+                    <i data-lucide="car" class="w-12 h-12 text-neon mb-6"></i>
+                    <h3 class="text-3xl font-bold mb-2">Car Repair</h3>
+                    <p class="text-gray-400 max-w-xs">Complete engine overhauls and body work using high-precision diagnostics.</p>
+                    <div class="absolute top-0 right-0 p-8 opacity-10 group-hover:scale-110 transition-transform"><i data-lucide="car" class="w-32 h-32"></i></div>
+                </div>
+                
+                <div class="glass p-8 rounded-3xl bento-item neon-border">
+                    <i data-lucide="bike" class="w-10 h-10 text-neon mb-6"></i>
+                    <h3 class="text-2xl font-bold mb-2">Bike Repair</h3>
+                    <p class="text-gray-400 text-sm">Precision tuning for sport bikes and cruisers alike.</p>
+                </div>
+
+                
+
+                <div class="md:col-span-2 glass p-8 rounded-3xl bento-item neon-border flex flex-col md:flex-row justify-between items-end">
+                    <div>
+                        <i data-lucide="droplet" class="w-10 h-10 text-neon mb-6"></i>
+                        <h3 class="text-2xl font-bold mb-2">Fluids & Battery</h3>
+                        <p class="text-gray-400 text-sm">Premium oil changes and electrical health checks.</p>
+                    </div>
+                    <div class="flex space-x-2 mt-6 md:mt-0">
+                        <span class="bg-neon/10 text-neon text-[10px] px-3 py-1 rounded-full font-bold uppercase tracking-widest border border-neon/20">Brakes</span>
+                        <span class="bg-neon/10 text-neon text-[10px] px-3 py-1 rounded-full font-bold uppercase tracking-widest border border-neon/20">Electrical</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="why-us" class="py-24 bg-white/[0.02] overflow-hidden">
+        <div class="container mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+            <div class="relative">
+                <div class="absolute -top-20 -left-20 w-64 h-64 bg-neon/10 blur-[80px]"></div>
+                <h2 class="heading-font text-5xl md:text-6xl uppercase italic mb-8">Why trust <br>the <span class="text-neon">Lab?</span></h2>
+                <div class="space-y-6">
+                    <div class="flex items-start space-x-4 reveal">
+                        <div class="mt-1 text-neon"><i data-lucide="check-circle-2"></i></div>
+                        <div>
+                            <h4 class="font-bold text-lg">No Hidden Charges</h4>
+                            <p class="text-gray-400 text-sm italic">What we quote is what you pay. Every single cent tracked.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4 reveal">
+                        <div class="mt-1 text-neon"><i data-lucide="refresh-cw"></i></div>
+                        <div>
+                            <h4 class="font-bold text-lg">Live Service Updates</h4>
+                            <p class="text-gray-400 text-sm italic">Watch your vehicle's progress via SMS or WhatsApp in real-time.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4 reveal">
+                        <div class="mt-1 text-neon"><i data-lucide="shield-check"></i></div>
+                        <div>
+                            <h4 class="font-bold text-lg">Genuine Spare Parts</h4>
+                            <p class="text-gray-400 text-sm italic">We only use OEM parts. No cheap knock-offs. Ever.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="glass p-12 rounded-[40px] text-center border-neon/20">
+                <h3 class="text-7xl font-black heading-font text-neon mb-2">5,000+</h3>
+                <p class="uppercase tracking-[0.3em] font-bold text-sm">Riders Satisfied</p>
+                <div class="mt-8 flex justify-center -space-x-4">
+                    <img src="https://i.pravatar.cc/100?u=1" class="w-12 h-12 rounded-full border-2 border-dark" />
+                    <img src="https://i.pravatar.cc/100?u=2" class="w-12 h-12 rounded-full border-2 border-dark" />
+                    <img src="https://i.pravatar.cc/100?u=3" class="w-12 h-12 rounded-full border-2 border-dark" />
+                    <div class="w-12 h-12 rounded-full bg-neon text-black flex items-center justify-center text-xs font-bold border-2 border-dark">+</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reviews" class="py-24">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-end mb-12">
+                <h2 class="heading-font text-5xl uppercase italic tracking-tighter">The <span class="text-neon">Word</span></h2>
+                <div class="flex items-center space-x-2 text-neon">
+                    <!-- <i data-lucide="star" class="fill-current w-4 h-4"></i> -->
+                   
+                </div>
+            </div>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="glass p-8 rounded-2xl relative">
+                    <div class="flex text-neon mb-4"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
+                    <p class="text-gray-300 italic mb-6">"Finally a garage that doesn't feel like a scam. The live updates are a game changer for my bike."</p>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-white/10 rounded-full overflow-hidden"><img src="https://i.pravatar.cc/100?u=a" /></div>
+                        <div><h5 class="text-sm font-bold">Alex Rivera</h5><p class="text-[10px] text-gray-500 uppercase">Ninja ZX-10R Owner</p></div>
+                    </div>
+                </div>
+                <div class="glass p-8 rounded-2xl relative">
+                    <div class="flex text-neon mb-4"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
+                    <p class="text-gray-300 italic mb-6">"Fast, clean, and professional. My car feels like it just came off the showroom floor."</p>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-white/10 rounded-full overflow-hidden"><img src="https://i.pravatar.cc/100?u=b" /></div>
+                        <div><h5 class="text-sm font-bold">Jordan T.</h5><p class="text-[10px] text-gray-500 uppercase">BMW M3 Owner</p></div>
+                    </div>
+                </div>
+                <div class="glass p-8 rounded-2xl relative">
+                    <div class="flex text-neon mb-4"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
+                    <p class="text-gray-300 italic mb-6">"Transparency is 10/10. Showed me the worn parts before replacing them. Highly recommend."</p>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-white/10 rounded-full overflow-hidden"><img src="https://i.pravatar.cc/100?u=c" /></div>
+                        <div><h5 class="text-sm font-bold">Sarah Jenkins</h5><p class="text-[10px] text-gray-500 uppercase">Daily Rider</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-12 bg-neon">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center text-black">
+            <h2 class="heading-font text-2xl md:text-4xl uppercase italic font-black text-center md:text-left mb-6 md:mb-0">
+                Your Vehicle Deserves Better Care.
+            </h2>
+            <button class="bg-black text-white px-10 py-4 rounded-full font-bold uppercase text-xs tracking-[0.2em] hover:scale-105 transition active:scale-95"><a href="Appointments.html">Book Appointment</a>
+            
+            </button>
+        </div>
+    </section>
+
+    <footer class="bg-[#0a0a0a] border-t border-white/10 pt-20 pb-10 px-6">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
+                
+                <div class="space-y-6">
+                    <div class="flex items-center gap-2">
+                        <div class="w-8 h-8 bg-neon rounded-lg flex items-center justify-center">
+                            <i data-lucide="cog" class="w-5 h-5 text-black"></i>
+                        </div>
+                        <span class="heading-font text-2xl uppercase italic tracking-tighter">REV<span class="text-neon">.</span>LAB</span>
+                    </div>
+                    <p class="text-gray-500 text-sm leading-relaxed max-w-xs">
+                        High-performance maintenance for the next generation of drivers. Engineering excellence, zero fluff.
+                    </p>
+                    <div class="flex gap-4">
+                     <a href="https://wa.me/919392608733" 
+   target="_blank" 
+   class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center hover:bg-[#25D366] hover:text-white transition-all group"
+   title="Chat on WhatsApp">
+    <i data-lucide="message-circle" class="w-5 h-5 group-hover:scale-110 transition-transform"></i>
+</a>
+                       
+                    
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-white text-xs uppercase tracking-[0.3em] font-black mb-8">Navigation</h4>
+                    <ul class="space-y-4">
+                        <li><a href="#home" class="text-gray-500 hover:text-neon transition-colors text-sm uppercase font-bold tracking-widest">Home</a></li>
+                        <li><a href="service.html" class="text-gray-500 hover:text-neon transition-colors text-sm uppercase font-bold tracking-widest">Services</a></li>
+                        <li><a href="about.html" class="text-gray-500 hover:text-neon transition-colors text-sm uppercase font-bold tracking-widest">why-us</a></li>
+                        <li><a href="Appointments.html" class="text-gray-500 hover:text-neon transition-colors text-sm uppercase font-bold tracking-widest">Book Slot</a></li>
+                    </ul>
+                </div>
+
+        
+                
+
+            <div class="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+                <p class="text-[10px] text-gray-600 uppercase tracking-widest font-medium">
+                    © 2026 REV.LAB — Designed for the Fast.
+                </p>
+                <div class="flex gap-8">
+                    <a href="privacy.html" class="text-[10px] text-gray-600 hover:text-white uppercase tracking-widest">Privacy Policy</a>
+                    <a href="terms.html" class="text-[10px] text-gray-600 hover:text-white uppercase tracking-widest">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Register GSAP ScrollTrigger
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Hero Animations
+        const tl = gsap.timeline({ defaults: { ease: "power4.out", duration: 1 }});
+        tl.from(".reveal", { opacity: 0, y: 40, stagger: 0.15 });
+        gsap.from("#car-path", { strokeDashoffset: 1000, duration: 3, ease: "power2.inOut" });
+
+        // Scroll Animations for sections
+        gsap.utils.toArray(".bento-item, .highlight-card").forEach(item => {
+            gsap.from(item, {
+                scrollTrigger: {
+                    trigger: item,
+                    start: "top 85%",
+                },
+                opacity: 0,
+                y: 30,
+                duration: 0.8
+            });
+        });
+
+        // "Why Choose Us" Reveal
+        gsap.from("#why-us h2, #why-us .reveal", {
+            scrollTrigger: {
+                trigger: "#why-us",
+                start: "top 70%",
+            },
+            opacity: 0,
+            x: -50,
+            stagger: 0.2,
+            duration: 1
+        });
+    </script>
+</body>
+</html>
